@@ -21,7 +21,7 @@ export default function Home() {
   // });
   const [post, setPost] = useState<string>("");
   const [media, setMedia] = useState<boolean>(false);
-  const [vibe, setVibe] = useState<VibeType>("Enhusiast");
+  const [vibe, setVibe] = useState<VibeType>("Story");
   const [name, setName] = useState<string>("");
   // const [hasVideo, setHasVideo] = useState<boolean>(false);
   // const [hasCarousel, setHasCarousel] = useState<boolean>(false);
