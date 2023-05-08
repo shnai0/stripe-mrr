@@ -37,7 +37,7 @@ export default function Home() {
   const handlePrompt = () => {
     let prompt;
     switch (vibe) {
-      case "Enthusiast":
+      case "Story":
         prompt = ` Generate a comment for a school report using the following ${post} :
 
 ${name} of student
