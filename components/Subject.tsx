@@ -7,7 +7,7 @@ interface SubjectProps {
 
 export const Subject = ({ subject, setSubject }: SubjectProps) => {
     return (
-        <div classSubject="w-full">
+        <div className="w-full">
             <input
                 type="text"
                 value={subject}
