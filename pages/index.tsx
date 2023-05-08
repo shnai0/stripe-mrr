@@ -3,71 +3,79 @@ import Image from "next/image";
 import { useEffect, useState, useRef } from "react";
 import { Post } from "@/components/Post";
 // import { Ranking } from "@/components/Ranking";
-import { rank } from "@/lib/linkedin-algorithm";
+// import { rank } from "@/lib/linkedin-algorithm";
 import { Toaster, toast } from "react-hot-toast";
 import LoadingDots from "@/components/LoadingDots";
 import DropDown, { VibeType } from "@/components/DropDown";
 import Footer from "@/components/Footer";
 import { Name } from "@/components/Name";
-
+import { Subject } from "@/components/Subject";
 
 
 export default function Home() {
   const [loading, setLoading] = useState(false);
   const [optimizedPost, setOptimizedPost] = useState<string>("");
-  // const [ranking, setRanking] = useState<RankResponse>({
-  // score: 0,
-  //   validations: [],
-  // });
+
   const [post, setPost] = useState<string>("");
   const [media, setMedia] = useState<boolean>(false);
-  const [vibe, setVibe] = useState<VibeType>("Story");
+  const [vibe, setVibe] = useState<VibeType>("Excellent 🤩");
   const [name, setName] = useState<string>("");
-  // const [hasVideo, setHasVideo] = useState<boolean>(false);
-  // const [hasCarousel, setHasCarousel] = useState<boolean>(false);
+  const [subject, setSubject] = useState<string>("");
 
-  // useEffect(() => {
-  //   const rankResponse = rank(post, media);
-  //   setRanking(rankResponse);
-  // }, [post, media]);
-
-  // prompt for optimizing post
-
-  // add more vibes as needed
   const handlePrompt = () => {
     let prompt;
     switch (vibe) {
-      case "Story":
+      case "Excellent 🤩":
         prompt = ` Generate a comment for a school report using the following ${post} :
 
 ${name} of student
 
-Grade: 3
 
-Tone: Enthusiastic
+Tone: Enthusiastic and student was excellent
 
-Subject: Reading
+Subject and grade: ${subject}
 
-Characters output: 450`;
-        break;
-      case "Crisp":
-        prompt = `G`;
+Characters output:  600`;
 
         break;
-      case "List":
-        prompt = `Ge`;
+      case "Good 😊":
+        prompt = `Generate a comment for a school report using the following ${post} :
 
+${name} of student
 
+Tone: Good and student was performing good
+
+Use the subject and grade: ${subject}
+
+Characters output:  600`;
 
         break;
-      case "Unpopular opinion":
-        prompt = `G.`;
+      case "Okay 😐":
+        prompt = `Generate a comment for a school report using the following ${post} :
+
+${name} of student
+
+Tone: Neutral, student performing okay
+
+Use the subject and grade: ${subject}
+
+Characters output:  600`;
+
         break;
-      case "Case Study":
-        prompt = `Gene.`;
+      case "Poor 🙁":
+        prompt = `Generate a comment for a school report using the following ${post} :
+
+${name} of student
+
+Tone: Negative, student perfroming not good
+
+Use the subject and grade: ${subject}
+
+Characters output: 600`;
         break;
+
       default:
-        prompt = `Generate a comment for a school report using the following ${post} use ${name} of student`;
+        prompt = `Generate a comment for a school report using the following ${post} use ${name} of student and grade and subject from ${subject}`;
         break;
     }
     return prompt;
@@ -120,7 +128,7 @@ Characters output: 450`;
 
         <title>ReportX</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="👩‍💼" />
+        <link rel="icon" href="ReportX" />
         <meta
           name="description"
           content="See how your post performs against Linkedin alghoritm and generate better post with AI."
@@ -168,25 +176,11 @@ Characters output: 450`;
                     rel="noreferrer"
                     className="text-white flex max-w-fit items-center justify-center space-x-2 text-xl"
                   >
-                    <p>👩‍💼</p>
+                    <p>ReportX</p>
 
                   </a>
                 </div>
-                {/* <div>
-                  <ul className="flex">
-                    <li className="ml-8">
-                      <a
-                        target="_blank"
-                        href="https://github.com/mfts/twitter-algorithm-ai"
-                        rel="noreferrer"
-                        className="text-white flex max-w-fit items-center justify-center space-x-2"
-                      >
-                        <Github />
-                        <p>Star on GitHub</p>
-                      </a>
-                    </li>
-                  </ul>
-                </div> */}
+
               </div>
             </div>
           </div>
@@ -201,7 +195,7 @@ Characters output: 450`;
                   ReportX
                 </h1>
                 <p className="mt-3 mb-10 text-center">
-                  Generate report for students work <br />
+                  AI school report writer for teachers <br />
 
                 </p>
                 <div className="flex flex-col md:flex-row w-full md:space-x-20">
@@ -214,12 +208,23 @@ Characters output: 450`;
                     </div>
 
                     <div className="w-full my-1 mx-auto">
-                      <Name
-                        name={name}
-                        setName={setName}
+                      <div className="flex space-x-4"> {/* Add this wrapper div with flex and space-x classes */}
+                        <div className="w-1/3"> {/* Add w-1/2 class to the parent div */}
+                          <Name
+                            name={name}
+                            setName={setName}
+                          />
+                        </div>
 
-                      />
+                        <div className="w-2/3"> {/* Add w-1/2 class to the parent div */}
+                          <Subject
+                            subject={subject}
+                            setSubject={setSubject}
+                          />
+                        </div>
+                      </div>
                     </div>
+
 
                     <div className="w-full my-1 mx-auto">
                       <Post

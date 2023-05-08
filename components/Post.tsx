@@ -16,7 +16,7 @@ export const Post = ({ post, setPost, media, setMedia }: PostProps) => {
         <textarea
           maxLength={2000}
           onChange={(e) => setPost(e.target.value)}
-          placeholder="Type your summary or notes for the student work"
+          placeholder="Type your feedback or summary"
           className="text-black w-full h-56 p-2 text-s bg-white border border-gray-300 rounded-md shadow-inner md:h-240"
         />
       </div>

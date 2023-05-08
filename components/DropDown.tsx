@@ -10,14 +10,14 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-export type VibeType = "Story" | "Crisp" | "List" | "Unpopular opinion" | "Case Study";
+export type VibeType = "Excellent 🤩" | "Good 😊" | "Okay 😐" | "Poor 🙁";
 
 interface DropDownProps {
   vibe: VibeType;
   setVibe: Dispatch<SetStateAction<VibeType>>;
 }
 
-let vibes: VibeType[] = ["Story", "Crisp", "List", "Unpopular opinion", "Case Study"];
+let vibes: VibeType[] = ["Excellent 🤩", "Good 😊", "Okay 😐", "Poor 🙁"];
 
 export default function DropDown({ vibe, setVibe }: DropDownProps) {
   return (
