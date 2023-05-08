@@ -47,6 +47,7 @@ export function rank(post: string, postMedia: boolean): RankResponse {
   const theSentimentResponse = theSentiment.analyze(post);
   const postData: PostData = {
     post: parsedPost,
+    name: '',
     originalPost: post,
     sentiment: theSentimentResponse,
     postMedia: postMedia,
