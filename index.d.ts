@@ -27,6 +27,7 @@ interface AnalysisResult {
 }
 interface PostData {
   post: string;
+  name: string;
   originalPost: string;
   sentiment: AnalysisResult;
   postMedia: boolean;
