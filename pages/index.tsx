@@ -143,25 +143,25 @@ Characters output: 600`;
         />
         <meta
           property="og:title"
-          content="LinkedIn Post Generator with AI"
+          content="ReportX"
         />
         <meta name="linkedin:card" content="summary_large_image" />
         <meta
           name="linkedin:title"
-          content="Linkedin Post Generator"
+          content="ReportX"
         />
         <meta
           name="linkedin:description"
-          content="See how your post performs against Linkedin alghoritm and generate better post with AI."
+          content="Create teachers reports in clicks"
         />
-        <meta
+        {/* <meta
           property="og:image"
           content="https://postgenerator.app/cover.png"
         />
         <meta
           name="linked:image"
           content="https://postgenerator.app/cover.png"
-        />
+        /> */}
 
       </Head>
 
