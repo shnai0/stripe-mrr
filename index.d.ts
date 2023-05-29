@@ -29,6 +29,7 @@ interface PostData {
   post: string;
   name: string;
   subject: string;
+  gender: string;
   originalPost: string;
   sentiment: AnalysisResult;
   postMedia: boolean;

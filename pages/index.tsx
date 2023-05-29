@@ -9,8 +9,8 @@ import LoadingDots from "@/components/LoadingDots";
 import DropDown, { VibeType } from "@/components/DropDown";
 import Footer from "@/components/Footer";
 import { Name } from "@/components/Name";
-import { Subject } from "@/components/Subject";
-
+import { Subject } from "@/components/Subject"; 
+import { Gender } from "@/components/Gender";
 
 export default function Home() {
   const [loading, setLoading] = useState(false);
@@ -18,58 +18,140 @@ export default function Home() {
 
   const [post, setPost] = useState<string>("");
   const [media, setMedia] = useState<boolean>(false);
-  const [vibe, setVibe] = useState<VibeType>("Excellent 🤩");
+  const [vibe, setVibe] = useState<VibeType>("Motivated");
   const [name, setName] = useState<string>("");
   const [subject, setSubject] = useState<string>("");
+ const [gender, setGender] = useState<string>("");
 
   const handlePrompt = () => {
     let prompt;
     switch (vibe) {
-      case "Excellent 🤩":
+      case "Motivated":
         prompt = ` Generate a comment for a school report using the following ${post} :
 
 ${name} of student
 
 
-Tone: Enthusiastic and student was excellent
+Tone: Student is motivated
 
 Subject and grade: ${subject}
 
-Characters output:  600`;
-
-        break;
-      case "Good 😊":
-        prompt = `Generate a comment for a school report using the following ${post} :
-
-${name} of student
-
-Tone: Good and student was performing good
-
-Use the subject and grade: ${subject}
+Use the gender referring to student mentioned here: ${gender}
 
 Characters output:  600`;
 
         break;
-      case "Okay 😐":
+      case "Studious":
         prompt = `Generate a comment for a school report using the following ${post} :
 
 ${name} of student
 
-Tone: Neutral, student performing okay
+Tone: Student is studious
 
 Use the subject and grade: ${subject}
+
+Use the gender referring to student mentioned here: ${gender}
+
 
 Characters output:  600`;
 
         break;
-      case "Poor 🙁":
+      case "Analytical":
         prompt = `Generate a comment for a school report using the following ${post} :
 
 ${name} of student
 
-Tone: Negative, student perfroming not good
+Tone: Student is analytical
 
 Use the subject and grade: ${subject}
+
+Use the gender referring to student mentioned here: ${gender}
+
+
+Characters output:  600`;
+
+        break;
+      case "Proactive":
+        prompt = `Generate a comment for a school report using the following ${post} :
+
+${name} of student
+
+Tone: Student is proactive
+
+Use the subject and grade: ${subject}
+
+Use the gender referring to student mentioned here: ${gender}
+
+Characters output: 600`;
+        break;
+        
+      case "Focused":
+        prompt = `Generate a comment for a school report using the following ${post} :
+
+${name} of student
+
+Tone: Student is focused
+
+Use the subject and grade: ${subject}
+
+Use the gender referring to student mentioned here: ${gender}
+
+Characters output: 600`;
+        break;
+
+      case "Unfocused":
+        prompt = `Generate a comment for a school report using the following ${post} :
+
+${name} of student
+
+Tone: Student is unfocused
+
+Use the subject and grade: ${subject}
+
+Use the gender referring to student mentioned here: ${gender}
+
+Characters output: 600`;
+        break;
+
+      case "Distracted":
+        prompt = `Generate a comment for a school report using the following ${post} :
+
+${name} of student
+
+Tone: Student is distracted
+
+Use the subject and grade: ${subject}
+
+Use the gender referring to student mentioned here: ${gender}
+
+
+Characters output: 600`;
+        break;
+
+      case "Underachieving":
+        prompt = `Generate a comment for a school report using the following ${post} :
+
+${name} of student
+
+Tone: Student is underachieving
+
+Use the subject and grade: ${subject}
+
+Use the gender referring to student mentioned here: ${gender}
+
+Characters output: 600`;
+        break;
+
+      case "Missing the mark":
+        prompt = `Generate a comment for a school report using the following ${post} :
+
+${name} of student
+
+Tone: Student is missing the mark
+
+Use the subject and grade: ${subject}
+
+Use the gender referring to student mentioned here: ${gender}
 
 Characters output: 600`;
         break;
@@ -131,7 +213,7 @@ Characters output: 600`;
         <link rel="icon" href="ReportX" />
         <meta
           name="description"
-          content="See how your post performs against Linkedin alghoritm and generate better post with AI."
+          content="Generate professional reports and assessments for students "
         />
         <meta
           property="og:site_name"
@@ -139,7 +221,7 @@ Characters output: 600`;
         />
         <meta
           property="og:description"
-          content="See how your post performs against LinkedIn alghoritm and generate better post with AI."
+          content="Generate professional reports and assessments for students."
         />
         <meta
           property="og:title"
@@ -147,11 +229,11 @@ Characters output: 600`;
         />
         <meta name="linkedin:card" content="summary_large_image" />
         <meta
-          name="linkedin:title"
+          name="ReportX:title"
           content="ReportX"
         />
         <meta
-          name="linkedin:description"
+          name="ReportX:description"
           content="Create teachers reports in clicks"
         />
         {/* <meta
@@ -216,11 +298,19 @@ Characters output: 600`;
                           />
                         </div>
 
-                        <div className="w-2/3"> {/* Add w-1/2 class to the parent div */}
+                        <div className="w-1/3"> {/* Add w-1/2 class to the parent div */}
                           <Subject
                             subject={subject}
                             setSubject={setSubject}
                           />
+                          </div>
+
+                          <div className="w-1/3"> {/* Add w-1/2 class to the parent div */}
+                      <Gender
+                            gender={gender}
+                            setGender={setGender}
+                          />
+                         
                         </div>
                       </div>
                     </div>
@@ -242,6 +332,9 @@ Characters output: 600`;
                     <div className="block">
                       <DropDown vibe={vibe} setVibe={setVibe} />
                     </div>
+
+              
+
                     <div className="my-4">
                       <button
                         disabled={loading}

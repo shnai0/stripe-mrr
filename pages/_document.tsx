@@ -10,7 +10,7 @@ export default function Document() {
       <body>
         <Main />
         <NextScript />
-        <script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js' />
+        {/* <script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js' />
         <Script
           id="kofi-widget"
           strategy="afterInteractive"
@@ -22,8 +22,8 @@ export default function Document() {
               'floating-chat.donateButton.background-color': '#0E66C2',
               'floating-chat.donateButton.text-color': '#fff'
             });`
-          }}
-        />
+          }} /> */}
+        
       </body>
     </Html >
   )

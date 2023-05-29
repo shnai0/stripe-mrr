@@ -12,7 +12,7 @@ export const Subject = ({ subject, setSubject }: SubjectProps) => {
                 type="text"
                 value={subject}
                 onChange={(e) => setSubject(e.target.value)}
-                placeholder="Subject and grade"
+                placeholder="Subject & grade"
                 className="text-black w-full p-2 text-s bg-white border border-gray-300 rounded-md shadow-inner"
             />
         </div>
