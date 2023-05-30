@@ -11,6 +11,9 @@ import Footer from "@/components/Footer";
 import { Name } from "@/components/Name";
 import { Subject } from "@/components/Subject"; 
 import { Gender } from "@/components/Gender";
+import { Addressee } from "@/components/Addressee";
+
+
 
 export default function Home() {
   const [loading, setLoading] = useState(false);
@@ -22,6 +25,7 @@ export default function Home() {
   const [name, setName] = useState<string>("");
   const [subject, setSubject] = useState<string>("");
  const [gender, setGender] = useState<string>("");
+ const [addressee, setAddressee] = useState<string>("");
 
   const handlePrompt = () => {
     let prompt;
@@ -38,6 +42,8 @@ Subject and grade: ${subject}
 
 Use the gender referring to student mentioned here: ${gender}
 
+Address the text to ${addressee}
+
 Characters output:  600`;
 
         break;
@@ -51,6 +57,8 @@ Tone: Student is studious
 Use the subject and grade: ${subject}
 
 Use the gender referring to student mentioned here: ${gender}
+
+Address the text to ${addressee}
 
 
 Characters output:  600`;
@@ -67,6 +75,8 @@ Use the subject and grade: ${subject}
 
 Use the gender referring to student mentioned here: ${gender}
 
+Address the text to ${addressee}
+
 
 Characters output:  600`;
 
@@ -82,6 +92,8 @@ Use the subject and grade: ${subject}
 
 Use the gender referring to student mentioned here: ${gender}
 
+Address the text to ${addressee}
+
 Characters output: 600`;
         break;
         
@@ -95,6 +107,8 @@ Tone: Student is focused
 Use the subject and grade: ${subject}
 
 Use the gender referring to student mentioned here: ${gender}
+
+Address the text to ${addressee}
 
 Characters output: 600`;
         break;
@@ -110,6 +124,8 @@ Use the subject and grade: ${subject}
 
 Use the gender referring to student mentioned here: ${gender}
 
+Address the text to ${addressee}
+
 Characters output: 600`;
         break;
 
@@ -123,6 +139,8 @@ Tone: Student is distracted
 Use the subject and grade: ${subject}
 
 Use the gender referring to student mentioned here: ${gender}
+
+Address the text to ${addressee}
 
 
 Characters output: 600`;
@@ -139,6 +157,8 @@ Use the subject and grade: ${subject}
 
 Use the gender referring to student mentioned here: ${gender}
 
+Adress the text as in : ${addressee}
+
 Characters output: 600`;
         break;
 
@@ -152,6 +172,8 @@ Tone: Student is missing the mark
 Use the subject and grade: ${subject}
 
 Use the gender referring to student mentioned here: ${gender}
+
+Adress the text as in : ${addressee}
 
 Characters output: 600`;
         break;
@@ -298,20 +320,14 @@ Characters output: 600`;
                           />
                         </div>
 
-                        <div className="w-1/3"> {/* Add w-1/2 class to the parent div */}
+                        <div className="w-2/3"> {/* Add w-1/2 class to the parent div */}
                           <Subject
                             subject={subject}
                             setSubject={setSubject}
                           />
                           </div>
 
-                          <div className="w-1/3"> {/* Add w-1/2 class to the parent div */}
-                      <Gender
-                            gender={gender}
-                            setGender={setGender}
-                          />
                          
-                        </div>
                       </div>
                     </div>
 
@@ -329,10 +345,30 @@ Characters output: 600`;
 
 
                     </div>
-                    <div className="block">
+                    <div className="block  mb-4">
                       <DropDown vibe={vibe} setVibe={setVibe} />
                     </div>
+                    
+                    <div className="w-full my-1 mx-auto">
+                      <div className="flex space-x-6"> 
+                    <div className="w-full"> {/* Add w-1/2 class to the parent div */}
+                      <Gender
+                            gender={gender}
+                            setGender={setGender}
+                          />
+                         
+                        </div>
 
+                        <div className="w-1/2 "> {/* Add w-1/2 class to the parent div */}
+                      <Addressee
+                            addressee ={addressee}
+                            setAddressee={setAddressee}
+                          />
+
+                        </div>
+               </div>
+               </div>
+              
               
 
                     <div className="my-4">
