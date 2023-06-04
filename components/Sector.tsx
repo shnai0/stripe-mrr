@@ -1,8 +1,9 @@
 import React from "react";
 import Select from "react-select";
+import { Dispatch, SetStateAction } from "react";
 
 const sectorsList = [
-  "All Industries",
+  "Any Industry",
   "Technology",
   "Finance",
   "Healthcare",
@@ -20,15 +21,28 @@ const options = sectorsList.map((name) => {
   return { value: name, label: name };
 });
 
-export const SectorSelect = ({ sector, setSector }) => {
-  const handleChange = (selectedOption) => {
+interface SelectedOption {
+  value: string;
+  label: string;
+}
+
+interface SectorSelectProps {
+  sector: string;
+  setSector: Dispatch<SetStateAction<string>>;
+}
+
+export const SectorSelect: React.FC<SectorSelectProps> = ({
+  sector,
+  setSector,
+}) => {
+  const handleChange = (selectedOption: SelectedOption | null) => {
     setSector(selectedOption ? selectedOption.value : "");
   };
 
   const selectedSector = options.find((option) => option.value === sector);
 
   const defaultOption = options.find(
-    (option) => option.value === "All Industries"
+    (option) => option.value === "Any Industry"
   );
 
   return (

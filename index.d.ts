@@ -35,3 +35,7 @@ interface PostData {
   sentiment: AnalysisResult;
   postMedia: boolean;
 }
+
+declare module "country-list" {
+  export function getNames(): string[];
+}

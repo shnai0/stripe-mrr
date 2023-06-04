@@ -18,6 +18,11 @@ export async function getStaticPaths() {
   return { paths, fallback: true };
 }
 
+interface Params {
+  slug: string;
+  id: string;
+}
+
 export async function getStaticProps({ params }: { params: Params }) {
   const page = await prisma.page.findUnique({
     where: { slug: params.slug },
@@ -30,12 +35,11 @@ export async function getStaticProps({ params }: { params: Params }) {
   return { props: { page } };
 }
 
-export default function Home({ page }) {
+export default function Home({ page }: { page: any }) {
   const [loading, setLoading] = useState(false);
   const [optimizedPost, setOptimizedPost] = useState<string>("");
 
   const [post, setPost] = useState<string>("");
-  const [media, setMedia] = useState<boolean>(false);
   const [sector, setSector] = useState<string>("");
   const [round, setRound] = useState<string>("");
   const [country, setCountry] = useState<string>("");

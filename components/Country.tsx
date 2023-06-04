@@ -10,9 +10,19 @@ const options = countryList.map((name) => {
   return { value: name, label: name };
 });
 
-export const CountrySelect = ({ country, setCountry, slug }) => {
-  const handleChange = (selectedOption: { value: any }) => {
-    setCountry(selectedOption.value);
+interface CountrySelectProps {
+  country: string;
+  setCountry: (value: string) => void;
+  slug: string;
+}
+
+export const CountrySelect: React.FC<
+  React.PropsWithChildren<CountrySelectProps>
+> = ({ country, setCountry, slug }) => {
+  const handleChange = (selectedOption: any, actionMeta: any) => {
+    if (selectedOption) {
+      setCountry(selectedOption.value);
+    }
   };
 
   useEffect(() => {
@@ -22,7 +32,7 @@ export const CountrySelect = ({ country, setCountry, slug }) => {
       );
       if (slugCountry) setCountry(slugCountry.value);
     }
-  }, [slug]);
+  }, [slug, setCountry]);
 
   const selectedCountry = options.find((option) => option.value === country);
 

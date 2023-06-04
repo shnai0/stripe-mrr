@@ -2,22 +2,35 @@ import React from "react";
 import Select from "react-select";
 
 const roundsList = [
-  "Any Funding Round",
+  "Any Funding",
   "Angel",
   "Pre-Seed",
   "Seed",
   "Series A",
   "Series B",
   "Series C",
-  "And More",
+  "Pre-IPO",
 ];
 
 const options = roundsList.map((name) => {
   return { value: name, label: name };
 });
 
-export const RoundSelect = ({ round, setRound }) => {
-  const handleChange = (selectedOption) => {
+interface RoundSelectProps {
+  round: string;
+  setRound: (value: string) => void;
+}
+
+export const RoundSelect: React.FC<RoundSelectProps> = ({
+  round,
+  setRound,
+}) => {
+  interface SelectedOption {
+    value: string;
+    label: string;
+  }
+
+  const handleChange = (selectedOption: SelectedOption | null) => {
     setRound(selectedOption ? selectedOption.value : "");
   };
 
