@@ -1,34 +1,48 @@
 import Head from "next/head";
-import Image from "next/image";
+import { PrismaClient } from "@prisma/client";
+const prisma = new PrismaClient();
 import { useEffect, useState, useRef } from "react";
 import { Post } from "@/components/Post";
-// import { Ranking } from "@/components/Ranking";
-// import { rank } from "@/lib/linkedin-algorithm";
 import { Toaster, toast } from "react-hot-toast";
 import LoadingDots from "@/components/LoadingDots";
 // import DropDown, { VibeType } from "@/components/DropDown";
 import Footer from "@/components/Footer";
-import { Name } from "@/components/Name";
 import { SectorSelect } from "@/components/Sector";
 import { RoundSelect } from "@/components/Round";
 import { CountrySelect } from "@/components/Country";
 
-export default function Home() {
+export async function getStaticPaths() {
+  const pages = await prisma.page.findMany();
+  const paths = pages.map((page) => ({ params: { slug: page.slug } }));
+
+  return { paths, fallback: true };
+}
+
+export async function getStaticProps({ params }: { params: Params }) {
+  const page = await prisma.page.findUnique({
+    where: { slug: params.slug },
+  });
+
+  if (!page) {
+    return { notFound: true };
+  }
+
+  return { props: { page } };
+}
+
+export default function Home({ page }) {
   const [loading, setLoading] = useState(false);
   const [optimizedPost, setOptimizedPost] = useState<string>("");
 
   const [post, setPost] = useState<string>("");
   const [media, setMedia] = useState<boolean>(false);
-  const [vibe, setVibe] = useState<VibeType>("Motivated");
-  const [name, setName] = useState<string>("");
   const [sector, setSector] = useState<string>("");
   const [round, setRound] = useState<string>("");
   const [country, setCountry] = useState<string>("");
 
   const handlePrompt = () => {
-    let prompt = `Provide me the list of 10 investors or vc funds in country" ${country}  
-  for specific funding round: ${round} 
-  and industry defined here: ${sector} with name of company and website link.
+    let prompt = `Provide me the list of seed investors in ${country}  
+  for specific funding round ${round}  and specific sector in industry ${sector}  with name of company and website link
   only give a list, no comments, never comments. 
   If there is no list available, than povide the list of investors for any funding round and any sector in this country.`;
 
@@ -79,13 +93,10 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="Startup investors" />
 
-        <meta
-          name="description"
-          content="Generate professional reports and assessments for students "
-        />
+        <meta name="description" content={`${page.meta}`} />
         <meta property="og:site_name" content="startupinvestors.vercel.app" />
         <meta property="og:description" content="Startup funding." />
-        <meta property="Startup investors:title" content="Startup investors" />
+        <meta property="Startup investors:title" content="ReportX" />
 
         <meta name="linkedin:card" content="summary_large_image" />
         <meta name="Startups:title" content="Startups funding" />
@@ -105,7 +116,7 @@ export default function Home() {
                   <div className="flex items-centertext-base ">
                     <a
                       target="_blank"
-                      href="https://www.linkedin.com/in/iuliia-shnai/"
+                      href="/"
                       rel="noreferrer"
                       className="text-white flex max-w-fit items-center justify-center space-x-2 text-xl"
                     >
@@ -122,7 +133,7 @@ export default function Home() {
               <div className="max-w-5xl mx-auto">
                 <div className="w-full mx-auto">
                   <h1 className="text-6xl text-center font-bold pb-1 text-white ">
-                    Investors for Startups
+                    {page.header}
                   </h1>
                   <p className="mt-3 mb-10 text-center text-white">
                     Raise capital with help of AI generated list of investors{" "}
@@ -142,6 +153,7 @@ export default function Home() {
                             <CountrySelect
                               country={country}
                               setCountry={setCountry}
+                              slug={page.slug}
                             />
                           </div>
                           <div className="w-full">

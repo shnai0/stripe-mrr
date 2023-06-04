@@ -28,9 +28,9 @@ interface AnalysisResult {
 interface PostData {
   post: string;
   name: string;
-  subject: string;
-  gender: string;
-  addressee: string;
+  sector: string;
+  round: string;
+  country: string;
   originalPost: string;
   sentiment: AnalysisResult;
   postMedia: boolean;
