@@ -42,9 +42,9 @@ export default function Home({ page }: { page: Page }) {
   const [loading, setLoading] = useState(false);
   const [optimizedPost, setOptimizedPost] = useState<string>("");
 
-  const [sector, setSector] = useState<string>("");
-  const [round, setRound] = useState<string>("");
-  const [country, setCountry] = useState<string>("");
+  const [sector, setSector] = useState<string>("Any Industry");
+  const [round, setRound] = useState<string>("Seed");
+  const [country, setCountry] = useState<string>("${country}");
 
   if (!page) {
     return <div>Page not found</div>;
@@ -101,7 +101,7 @@ export default function Home({ page }: { page: Page }) {
   return (
     <>
       <Head>
-        <title>Investors for startups </title>
+        <title>Investors for startups</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
         <meta name="description" content={page.meta} />

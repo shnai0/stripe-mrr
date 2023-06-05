@@ -15,16 +15,16 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [optimizedPost, setOptimizedPost] = useState<string>("");
   const [post, setPost] = useState<string>("");
-  const [sector, setSector] = useState<string>("");
-  const [round, setRound] = useState<string>("");
-  const [country, setCountry] = useState<string>("");
+  const [sector, setSector] = useState<string>("Technology");
+  const [round, setRound] = useState<string>("Seed");
+  const [country, setCountry] = useState<string>("Finland");
 
   const handlePrompt = () => {
     let prompt = `Provide me the list of 10 investors or vc funds in ${country}  
   for ${round} round
   and industry defined here: ${sector}. List should include name of the fund, website. 
   Only give a list, no comments, never comments. 
-  If there is no list available, than povide the list of investors for any funding round and any sector in this country.`;
+  If there is no list available, than povide the list of any vc funds or investors in this country.`;
 
     return prompt;
   };
@@ -32,9 +32,10 @@ export default function Home() {
   // function to send post to OpenAI and get response
   const optimizePost = async (e: any) => {
     e.preventDefault();
-    setOptimizedPost("");
     setLoading(true);
+
     const prompt = handlePrompt();
+
     const response = await fetch("/api/optimize", {
       method: "POST",
       headers: {
@@ -50,15 +51,17 @@ export default function Home() {
     }
 
     // This data is a ReadableStream
-    let data = await response.text(); // get the full response text
-    if (!data) {
-      return;
-    }
+    const data = await response.text(); // get the full response text
 
-    // check if the AI error message is present and replace it
-    const errorMessage = " AI language model";
-    if (data.includes(errorMessage)) {
-      data = data.replace(errorMessage, "Nothing found, try another search.");
+    // Handle no data case
+    if (!data) {
+      setOptimizedPost("Nothing found, try another search.");
+      setLoading(false);
+      return;
+
+      // Set the response data directly to state
+      setOptimizedPost(data);
+      setLoading(false);
     }
 
     const formattedData = data.replace(/\n/g, "<br>");
@@ -69,7 +72,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Investors for startups </title>
+        <title>1000+ investors for startups </title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
         <meta
