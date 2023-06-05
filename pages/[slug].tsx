@@ -1,21 +1,24 @@
 import Head from "next/head";
-import { PrismaClient } from "@prisma/client";
-const prisma = new PrismaClient();
-import { useEffect, useState, useRef } from "react";
-import { Post } from "@/components/Post";
+import prisma from "@/lib/prisma";
+import { useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import LoadingDots from "@/components/LoadingDots";
-// import DropDown, { VibeType } from "@/components/DropDown";
 import Footer from "@/components/Footer";
 import { SectorSelect } from "@/components/Sector";
 import { RoundSelect } from "@/components/Round";
 import { CountrySelect } from "@/components/Country";
+import { Page } from "@prisma/client";
 
 export async function getStaticPaths() {
-  const pages = await prisma.page.findMany();
-  const paths = pages.map((page) => ({ params: { slug: page.slug } }));
+  const pages = await prisma.page.findMany({
+    select: { slug: true },
+  });
 
-  return { paths, fallback: true };
+  const paths = pages.map((page) => ({
+    params: { slug: page.slug },
+  }));
+
+  return { paths, fallback: false }; // or 'blocking' if you want to enable on-demand page generation
 }
 
 interface Params {
@@ -35,14 +38,17 @@ export async function getStaticProps({ params }: { params: Params }) {
   return { props: { page } };
 }
 
-export default function Home({ page }: { page: any }) {
+export default function Home({ page }: { page: Page }) {
   const [loading, setLoading] = useState(false);
   const [optimizedPost, setOptimizedPost] = useState<string>("");
 
-  const [post, setPost] = useState<string>("");
   const [sector, setSector] = useState<string>("");
   const [round, setRound] = useState<string>("");
   const [country, setCountry] = useState<string>("");
+
+  if (!page) {
+    return <div>Page not found</div>;
+  }
 
   const handlePrompt = () => {
     let prompt = `Provide me the list of seed investors in ${country}  
@@ -90,21 +96,19 @@ export default function Home({ page }: { page: any }) {
     setLoading(false);
   };
 
+  console.log("page", page);
+
   return (
     <>
       <Head>
         <title>Investors for startups </title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="Startup investors" />
 
-        <meta name="description" content={`${page.meta}`} />
+        <meta name="description" content={page.meta} />
         <meta property="og:site_name" content="startupinvestors.vercel.app" />
-        <meta property="og:description" content="Startup funding." />
-        <meta property="Startup investors:title" content="ReportX" />
+        <meta property="og:description" content="Startup funding" />
 
         <meta name="linkedin:card" content="summary_large_image" />
-        <meta name="Startups:title" content="Startups funding" />
-        <meta name="ReportX:description" content="Startups funding" />
         <meta
           property="og:image"
           content="https://postgenerator.app/cover.png"
