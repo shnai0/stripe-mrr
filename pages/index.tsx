@@ -86,13 +86,10 @@ export default function Home() {
         />
         <meta property="Startup investors:title" content="Startup investors" />
 
-        <meta name="linkedin:card" content="summary_large_image" />
+        <meta name="StartupsFunding:card" content="summary_large_image" />
         <meta name="Startups:title" content="Startups funding" />
-        <meta name="ReportX:description" content="Startups funding" />
-        <meta
-          property="og:image"
-          content="https://postgenerator.app/cover.png"
-        />
+        <meta name="StartupsFunding:description" content="Startups funding" />
+        <meta property="og:image" content="/cover.png" />
       </Head>
 
       <div className="flex flex-col min-h-screen justify-between bg-slate-900">

@@ -108,11 +108,8 @@ export default function Home({ page }: { page: Page }) {
         <meta property="og:site_name" content="startupinvestors.vercel.app" />
         <meta property="og:description" content="Startup funding" />
 
-        <meta name="linkedin:card" content="summary_large_image" />
-        <meta
-          property="og:image"
-          content="https://postgenerator.app/cover.png"
-        />
+        <meta name="StartupFunding:card" content="summary_large_image" />
+        <meta property="og:image" content="/cover.png" />
       </Head>
 
       <div className="flex flex-col min-h-screen justify-between bg-slate-900">
