@@ -80,7 +80,10 @@ export default function Home() {
           content="Generate professional reports and assessments for students "
         />
         <meta property="og:site_name" content="startupinvestors.vercel.app" />
-        <meta property="og:description" content="Startup funding." />
+        <meta
+          property="og:description"
+          content="Unlock global startup funding with our app. Generate curated investor lists, connect with funds in various countries, and propel your startup to new heights today."
+        />
         <meta property="Startup investors:title" content="Startup investors" />
 
         <meta name="linkedin:card" content="summary_large_image" />
