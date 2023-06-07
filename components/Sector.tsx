@@ -5,6 +5,7 @@ import { Dispatch, SetStateAction } from "react";
 const sectorsList = [
   "Any Industry",
   "Technology",
+  "Open Source",
   "Finance",
   "Healthcare",
   "Manufacturing",
