@@ -72,6 +72,12 @@ export default function Home() {
   return (
     <>
       <Head>
+        <script
+          defer
+          data-domain="startupfunding.to"
+          src="https://plausible.io/js/script.js"
+        ></script>
+
         <title>Startup funding</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -101,7 +107,7 @@ export default function Home() {
                   <div className="flex items-centertext-base ">
                     <a
                       target="_blank"
-                      href="https://www.linkedin.com/in/iuliia-shnai/"
+                      href="/"
                       rel="noreferrer"
                       className="text-white flex max-w-fit items-center justify-center space-x-2 text-xl"
                     >
