@@ -237,7 +237,7 @@ export default function Home({ page }: { page: Page }) {
                     <div className="my-4 lg:px-80">
                       {optimizedPost && (
                         <a
-                          href="https://papermark.io"
+                          href="https://iuliia2.marbleflows.com/flows/6733/link"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="bg-black text-xs rounded-md w-full text-white px-1 py-1 hover:bg-black disabled:bg-purple-500 inline-block text-center"

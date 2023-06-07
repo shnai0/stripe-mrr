@@ -72,7 +72,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>1000+ investors for startups </title>
+        <title>Startup funding</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
         <meta
@@ -89,7 +89,7 @@ export default function Home() {
         <meta name="StartupsFunding:card" content="summary_large_image" />
         <meta name="Startups:title" content="Startups funding" />
         <meta name="StartupsFunding:description" content="Startups funding" />
-        <meta property="og:image" content="/cover.png" />
+        <meta property="og:image" content="cover.png" />
       </Head>
 
       <div className="flex flex-col min-h-screen justify-between bg-slate-900">
@@ -217,7 +217,7 @@ export default function Home() {
                     <div className="my-4 lg:px-80">
                       {optimizedPost && (
                         <a
-                          href="https://papermark.io"
+                          href="https://iuliia2.marbleflows.com/flows/6733/link"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="bg-black text-xs rounded-md w-full text-white px-1 py-1 hover:bg-black disabled:bg-purple-500 inline-block text-center"
