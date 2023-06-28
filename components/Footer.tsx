@@ -37,7 +37,7 @@ export default function Footer() {
           </svg>
         </Link>
         <Link
-          href="https://github.com/shnai0/linkedin-booster"
+          href="https://github.com/mfts/papermark"
           className="group"
           aria-label="@shnai0 on GitHub"
         >
