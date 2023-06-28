@@ -158,7 +158,7 @@ export default function Home({ page }: { page: Page }) {
                             <CountrySelect
                               country={country}
                               setCountry={setCountry}
-                              slug={page.slug}
+                              slug={page.country}
                             />
                           </div>
                           <div className="w-full">
