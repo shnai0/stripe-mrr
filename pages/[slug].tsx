@@ -226,7 +226,7 @@ export default function Home({ page }: { page: Page }) {
                           rel="noopener noreferrer"
                           className="bg-black text-xs rounded-md w-full text-white px-1 py-1 hover:bg-black disabled:bg-purple-500 inline-block text-center"
                         >
-                          Get access to 1000+ investors and funds
+                          Get access to 1000+ investors and funds!
                         </a>
                       )}
                     </div>
