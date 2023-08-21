@@ -2,7 +2,9 @@ import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { EllipsisHorizontalIcon } from "@heroicons/react/20/solid";
 
-const statuses = {
+type StatusKey = "Active" | "Withdraw" | "Overdue";
+
+const statuses: Record<StatusKey, string> = {
   Active: "text-green-700 bg-green-50 ring-green-600/20",
   Withdraw: "text-gray-600 bg-gray-50 ring-gray-500/10",
   Overdue: "text-red-700 bg-red-50 ring-red-600/10",
@@ -82,7 +84,7 @@ const clients = [
   },
 ];
 
-function classNames(...classes) {
+function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
@@ -179,7 +181,7 @@ export default function Grid() {
                   </div>
                   <div
                     className={classNames(
-                      statuses[client.lastInvoice.status],
+                      statuses[client.lastInvoice.status as StatusKey],
                       "rounded-md py-1 px-2 text-xs font-medium ring-1 ring-inset"
                     )}
                   >

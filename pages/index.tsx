@@ -229,7 +229,6 @@ export default function Home() {
             </div>
           </section>
         </main>
-
         <footer className="bg-slate-900 text-white">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <Footer />

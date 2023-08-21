@@ -6,6 +6,8 @@ import LoadingDots from "@/components/LoadingDots";
 import Footer from "@/components/Footer";
 import { SectorSelect } from "@/components/Sector";
 import { RoundSelect } from "@/components/Round";
+import Nav from "@/components/Nav";
+import Grid from "@/components/Grid";
 import { CountrySelect } from "@/components/Country";
 import { Page } from "@prisma/client";
 
@@ -142,7 +144,7 @@ export default function Home({ page }: { page: Page }) {
                             <CountrySelect
                               country={country}
                               setCountry={setCountry}
-                              slug={page.country}
+                              slug={page.country || "defaultCountry"}
                             />
                           </div>
                           <div className="w-full">
