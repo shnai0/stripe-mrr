@@ -7,6 +7,8 @@ import { Toaster, toast } from "react-hot-toast";
 import LoadingDots from "@/components/LoadingDots";
 // import DropDown, { VibeType } from "@/components/DropDown";
 import Footer from "@/components/Footer";
+import Nav from "@/components/Nav";
+import Grid from "@/components/Grid";
 import { SectorSelect } from "@/components/Sector";
 import { RoundSelect } from "@/components/Round";
 import { CountrySelect } from "@/components/Country";
@@ -74,7 +76,7 @@ export default function Home() {
       <Head>
         <script
           defer
-          data-domain="startupfunding.to"
+          data-domain="vc.papermark.io"
           src="https://plausible.io/js/script.js"
         ></script>
 
@@ -83,7 +85,7 @@ export default function Home() {
 
         <meta
           name="description"
-          content="Generate professional reports and assessments for students "
+          content="Find investors and vc funds near you"
         />
         <meta property="og:site_name" content="startupinvestors.vercel.app" />
         <meta
@@ -100,24 +102,8 @@ export default function Home() {
 
       <div className="flex flex-col min-h-screen justify-between bg-slate-900">
         <main className="h-full bg-slate-900">
-          <nav className="bg-black text-white ">
-            <div className="px-5">
-              <div className="max-w-5xl mx-auto">
-                <div className="flex justify-between items-center h-16 ">
-                  <div className="flex items-centertext-base ">
-                    <a
-                      target="_blank"
-                      href="/"
-                      rel="noreferrer"
-                      className="text-white flex max-w-fit items-center justify-center space-x-2 text-xl"
-                    >
-                      <p>Startup investors</p>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </nav>
+          <Nav />
+
           <section className="py-10 lg:py-20 bg-slate-900">
             {/* bg-[url('/image1.svg')] */}
             <div className="px-4">
@@ -171,7 +157,7 @@ export default function Home() {
                         <button
                           disabled={loading}
                           onClick={(e) => optimizePost(e)}
-                          className="bg-purple-500 font-medium rounded-md w-full text-white px-4 py-2 hover:bg-purple-100 disabled:bg-purple-500"
+                          className="bg-indigo-500 font-medium rounded-md w-full text-white px-4 py-2 hover:bg-indigo-700 disabled:bg-indigo-500"
                         >
                           {loading && (
                             <LoadingDots color="white" style="large" />
@@ -233,11 +219,17 @@ export default function Home() {
                       )}
                     </div>
                   </div>
+                  {optimizedPost && (
+                    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 ">
+                      <Grid />
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
           </section>
         </main>
+
         <footer className="bg-slate-900 text-white">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <Footer />
