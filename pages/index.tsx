@@ -110,11 +110,11 @@ export default function Home() {
               <div className="max-w-5xl mx-auto">
                 <div className="w-full mx-auto">
                   <h1 className="text-6xl text-center font-bold pb-1 text-white ">
-                    Investors for Startups
+                    AI for Fundraising
                   </h1>
                   <p className="mt-3 mb-10 text-center text-white">
-                    Raise capital with help of AI generated list of investors{" "}
-                    <br />
+                    Raise capital with help of AI, Find investors and VC near
+                    you using AI <br />
                   </p>
                   <div className="max-w-5xl mx-auto px-8 lg:px-28">
                     <div className="max-w-5xl mx-auto">
