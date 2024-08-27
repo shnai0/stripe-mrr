@@ -6,7 +6,7 @@ export default function Footer() {
       <div className="text-sm text-bg-white">
         Powered by{" "}
         <a
-          href="https://openai.com/blog/chatgpt"
+          href="https://stripe.com"
           target="_blank"
           rel="noreferrer"
           className="font-bold hover:underline transition underline-offset-2"

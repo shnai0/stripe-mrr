@@ -13,6 +13,7 @@ import {
   CardDescription,
   CardContent,
 } from "../components/ui/card";
+import Footer from "@/components/Footer";
 
 interface DashboardProps {
   data?: {
