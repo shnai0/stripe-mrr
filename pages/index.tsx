@@ -1,20 +1,16 @@
 "use client";
 
-import { Bar, BarChart } from "recharts";
-import { ChartConfig, ChartContainer } from "@/components/ui/chart";
+import { useState, useEffect } from "react";
+import Navbar from "@/components/navbar";
+import Footer from "@/components/footer";
 import { MyChart } from "@/components/ui/charts";
-
-import { GetServerSideProps } from "next";
-import { getCombinedData } from "../lib/stripe";
 import {
   Card,
   CardHeader,
   CardTitle,
   CardDescription,
   CardContent,
-} from "../components/ui/card";
-// import Footer from "@/components/footer";
-import Navbar from "@/components/navbar";
+} from "@/components/ui/card";
 
 interface DashboardProps {
   data?: {
@@ -22,35 +18,47 @@ interface DashboardProps {
     totalMrr: number;
     totalVolume: number;
     mrrHistory: Array<{ month: string; combinedMRR: number }>;
+    volumeHistory: Array<{ month: string; totalVolume: number }>;
   };
   error?: string;
 }
 
-const chartConfig = {
-  combinedMRR: {
-    label: "Combined MRR",
-    color: "#2563eb",
-  },
-} satisfies ChartConfig;
+const Home: React.FC = () => {
+  const [dashboardData, setDashboardData] = useState<
+    DashboardProps["data"] | null
+  >(null);
+  const [error, setError] = useState<string | null>(null);
 
-export const getServerSideProps: GetServerSideProps<
-  DashboardProps
-> = async () => {
-  try {
-    const data = await getCombinedData();
-    return { props: { data } };
-  } catch (error) {
-    console.error("Error fetching dashboard data:", error);
-    return { props: { error: "Failed to fetch dashboard data" } };
-  }
-};
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("/api/dashboard");
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(
+            `Failed to fetch dashboard data: ${errorData.error} - ${errorData.details}`
+          );
+        }
+        const data = await response.json();
+        setDashboardData(data);
+      } catch (err: unknown) {
+        console.error("Error fetching dashboard data:", err);
+        if (err instanceof Error) {
+          setError(err.message);
+        } else {
+          setError("An unknown error occurred");
+        }
+      }
+    };
 
-const Home: React.FC<DashboardProps> = ({ data, error }) => {
+    fetchData();
+  }, []);
+
   if (error) {
     return <div className="text-red-500">Error: {error}</div>;
   }
 
-  if (!data) {
+  if (!dashboardData) {
     return <div>Loading...</div>;
   }
 
@@ -60,18 +68,18 @@ const Home: React.FC<DashboardProps> = ({ data, error }) => {
       <main className="flex-grow">
         <div className="flex flex-col space-y-4 p-4">
           {/* <h1 className="text-2xl font-bold">
-            Papermark Stripe MRR Dashboard (2 accounts)
+            Stripe MRR Dashboard (Combined 2 accounts)
           </h1> */}
 
-          <div className="flex flex-col lg:flex-row space-y-4 lg:space-y-0 lg:space-x-4">
-            <div className="w-full lg:w-2/3 space-y-4 my-10">
+          <div className="flex flex-col lg:flex-row space-y-4 lg:space-y-0 lg:space-x-4 ">
+            <div className="w-full lg:w-2/3 space-y-4 mb-20 sm:mb-0">
               <div className="h-[300px]">
-                <MyChart data={data.mrrHistory} />
+                <MyChart data={dashboardData.mrrHistory} />
               </div>
             </div>
 
-            <div className="w-full lg:w-1/3 space-y-4 pt-10 ">
-              {data.mrrData.map((account, index) => (
+            <div className="w-full lg:w-1/3 space-y-4 ">
+              {dashboardData.mrrData.map((account, index) => (
                 <Card key={index} className="p-4">
                   <CardHeader className="pb-2">
                     <CardDescription className="text-sm text-muted-foreground mb-1">
@@ -95,13 +103,13 @@ const Home: React.FC<DashboardProps> = ({ data, error }) => {
                     Combined MRR
                   </CardDescription>
                   <CardTitle className="text-3xl font-bold ">
-                    ${Math.round(data.totalMrr).toLocaleString()}
+                    ${Math.round(dashboardData.totalMrr).toLocaleString()}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <CardDescription className="text-xs text-muted-foreground mt-2">
                     Total Volume: $
-                    {Math.round(data.totalVolume).toLocaleString()}
+                    {Math.round(dashboardData.totalVolume).toLocaleString()}
                   </CardDescription>
                 </CardContent>
               </Card>
@@ -109,7 +117,6 @@ const Home: React.FC<DashboardProps> = ({ data, error }) => {
           </div>
         </div>
       </main>
-      {/* <Footer /> */}
     </div>
   );
 };

@@ -9,10 +9,10 @@ const Navbar = () => {
         href="https://github.com/shnai0/stripe-mrr"
         target="_blank"
         rel="noopener noreferrer"
-        className="bg-gray-900 hover:bg-blue-600 text-white font-normal py-2 px-4 rounded-full flex items-center space-x-2"
+        className="bg-gray-900 hover:bg-purple-700 text-white font-normal py-2 px-4 rounded-full flex items-center space-x-2 text-sm"
       >
-        <FaGithub className="text-xl" />
-        <span>Create Your Dashboard</span>
+        <FaGithub className="text-sm" />
+        <span>Create Dashboard </span>
       </Link>
     </nav>
   );

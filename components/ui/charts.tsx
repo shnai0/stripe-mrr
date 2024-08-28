@@ -8,6 +8,7 @@ import {
 } from "recharts";
 import { ChartContainer, ChartTooltip } from "@/components/ui/chart";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { format, parse, compareAsc } from "date-fns";
 
 interface MyChartProps {
   data: Array<{ month: string; combinedMRR: number }>;
@@ -18,6 +19,20 @@ export function MyChart({ data }: MyChartProps) {
     `$${Math.round(value).toLocaleString()}`;
   const formatTooltip = (value: number) =>
     `$${Math.round(value).toLocaleString()}`;
+
+  const formatXAxis = (tickItem: string) => {
+    const date = parse(tickItem, "yyyy-MM", new Date());
+    return format(date, "MMM");
+  };
+
+  const sortedData = [...data].sort((a, b) =>
+    compareAsc(
+      parse(a.month, "yyyy-MM", new Date()),
+      parse(b.month, "yyyy-MM", new Date())
+    )
+  );
+
+  console.log("Chart data:", sortedData); // Log the data to see what we're working with
 
   return (
     <Card>
@@ -35,16 +50,16 @@ export function MyChart({ data }: MyChartProps) {
         >
           <ResponsiveContainer width="100%" height={200}>
             <LineChart
-              data={data}
+              data={sortedData}
               margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
             >
               <CartesianGrid vertical={false} strokeDasharray="3 3" />
               <XAxis
                 dataKey="month"
+                tickFormatter={formatXAxis}
                 tickLine={false}
                 axisLine={false}
                 tickMargin={8}
-                tickFormatter={(value) => value.slice(0, 3)}
               />
               <YAxis
                 tickFormatter={formatYAxis}
