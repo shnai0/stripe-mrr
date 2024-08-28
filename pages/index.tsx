@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Navbar from "@/components/navbar";
-import Footer from "@/components/footer";
+// import Footer from "@/components/footer";
 import { MyChart } from "@/components/ui/charts";
 import {
   Card,
