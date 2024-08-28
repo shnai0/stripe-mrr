@@ -13,7 +13,7 @@ import {
   CardDescription,
   CardContent,
 } from "../components/ui/card";
-import Footer from "@/components/footer";
+// import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
 
 interface DashboardProps {
@@ -109,7 +109,7 @@ const Home: React.FC<DashboardProps> = ({ data, error }) => {
           </div>
         </div>
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };
