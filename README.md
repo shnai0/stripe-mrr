@@ -1,38 +1,102 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Stripe MRR Dashboard
+
+This project is a dashboard that combines MRR (Monthly Recurring Revenue) data from two Stripe accounts, providing a comprehensive view of your business's recurring revenue.
+
+## Features
+
+- Combines MRR data from two separate Stripe accounts
+- Displays total MRR and volume for each account and combined
+- Shows historical MRR and volume trends with interactive charts
+- Responsive design for both desktop and mobile viewing
+- Simple, clean UI with a navbar and footer
+
+## Tech Stack
+
+- Next.js
+- TypeScript
+- Tailwind CSS
+- Recharts for data visualization
+- Stripe API
+- VO 
+- shadcn
+
+
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+- Node.js (v14 or later)
+- npm or yarn
+- Stripe account(s) with API access
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Installation
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+1. Clone the repository:
+   ```
+   git clone https://github.com/yourusername/stripe-mrr-dashboard.git
+   cd stripe-mrr-dashboard
+   ```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+2. Install dependencies:
+   ```
+   npm install
+   ```
+   or
+   ```
+   yarn install
+   ```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+3. Set up environment variables:
+   Create a `.env.local` file in the root directory and add your Stripe API keys:
+   ```
+   STRIPE_SECRET_KEY_1=sk_test_...
+   STRIPE_SECRET_KEY_2=sk_test_...
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+4. Run the development server:
+   ```
+   npm run dev
+   ```
+   or
+   ```
+   yarn dev
+   ```
 
-## Learn More
+5. Open [http://localhost:3000](http://localhost:3000) in your browser to see the dashboard.
 
-To learn more about Next.js, take a look at the following resources:
+## Configuration
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+You can customize the dashboard by modifying the following files:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- `lib/stripe.ts`: Adjust Stripe API calls and data processing
+- `pages/index.tsx`: Modify the main dashboard layout and components
+- `components/ui/charts.tsx`: Customize chart appearance and behavior
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Deployment
+
+This project can be easily deployed to Vercel or any other Next.js-compatible hosting platform. Make sure to set up your environment variables in your hosting provider's settings.
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request. I would love to improve Gross volume and exact number of MRR currently they not correlate on 100 %
+
+
+## Acknowledgments
+
+- [Stripe](https://stripe.com) for their excellent API and documentation
+- [Next.js](https://nextjs.org) for the React framework
+- [Tailwind CSS](https://tailwindcss.com) for the utility-first CSS framework
+- [Recharts](https://recharts.org) for the charting library
+- [Recharts](https://recharts.org) for the charting library
+
+
+## Support
+
+If you have any questions or need help with setup, please open an issue in this repository.
+
+---
+
+Made with ❤️ by Shnai
