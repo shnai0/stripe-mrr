@@ -98,5 +98,3 @@ Contributions are welcome! Please feel free to submit a Pull Request. I would lo
 If you have any questions or need help with setup, please open an issue in this repository.
 
 ---
-
-Made with ❤️ by Shnai
