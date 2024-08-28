@@ -34,7 +34,7 @@ This project is a dashboard that combines MRR (Monthly Recurring Revenue) data f
 
 1. Clone the repository:
    ```
-   git clone https://github.com/yourusername/stripe-mrr-dashboard.git
+   git clone https://github.com/shnai0/stripe-mrr-.git
    cd stripe-mrr-dashboard
    ```
 
